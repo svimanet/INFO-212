@@ -8,14 +8,17 @@
 Tasks to be done:
 
 •[week 39] Create the main website
+
       •[week 38] HTML
       •[week 38] Info on the site
       •[week 39] Navigation etc
 
 •[week 41] Obtain data about breweries
+
     •[week 40] Scrap the websites mentioned, or find other resources
 
 •[week 41] Obtaining map
+
       •[week 40] Import google maps to site
       •[week 41] Fill with relevant data
       •[week 41] Make relevant data click responsive
