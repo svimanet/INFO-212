@@ -1,3 +1,12 @@
+# User-specific stuff:
+brewmapp/.idea*
+brewmapp/.idea/workspace.xml
+brewmapp/.idea/tasks.xml
+brewmapp/.idea/dictionaries
+brewmapp/.idea/vcs.xml
+brewmapp/.idea/jsLibraryMappings.xml
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -89,5 +98,3 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# .idea
-brewmapp/.idea/
