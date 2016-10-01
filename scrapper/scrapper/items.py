@@ -1,10 +1,10 @@
 from scrapy.item import Item, Field
 
 
-class ArticleItem(Item):
-    title = Field()
-    article = Field()
-    url = Field()
-    entity = Field()
+class BreweryItem(Item):
+    name = Field()
+    location = Field()
+    # Type of brewery.
+    type = Field()
 
 

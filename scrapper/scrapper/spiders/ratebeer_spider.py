@@ -1,6 +1,6 @@
 
 from scrapy.spiders import CrawlSpider, Rule
-from scrapper.items import ArticleItem
+from scrapper.items import BreweryItem
 
 from scrapy.selector import Selector
 from scrapy.utils.response import get_base_url
@@ -14,20 +14,18 @@ class ArticleScapper(CrawlSpider):
     name = "ratebeer"
     allowed_domains = ["ratebeer.com"]
     start_urls = [
+        	"http://www.ratebeer.com/breweries/norway/0/154/"
                   ]
     rules = [
         Rule(sle(
-            allow=("/nyheter/.*"),
+            allow=("/brewers/*"),
         ), callback='parse_1')]
 
     def parse_1(self, response):
         self.response = response
         self.selector = Selector(response)
-        item = ArticleItem()
+        item = BreweryItem()
 
-        item["title"] = self.selector.xpath('//head//meta[@property="og:title"]//@content').extract()[0]
-        item["entity"] = "ap"
-        item["article"] = "".join(self.selector.xpath('//div[contains(@class, "widget storyContent bodyText")]').extract()).encode("utf-8")
-        item["url"] = self.response.url
+ 	print(self.selector.xpath('//h1[@itemprop="name"]/text()').extract()[0])
 
         return item
