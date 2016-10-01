@@ -1,0 +1,4 @@
+Scrapy
+scrapyd
+txsocksx
+Twisted
