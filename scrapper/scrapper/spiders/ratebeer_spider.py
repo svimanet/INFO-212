@@ -26,6 +26,29 @@ class ArticleScapper(CrawlSpider):
         self.selector = Selector(response)
         item = BreweryItem()
 
- 	print(self.selector.xpath('//h1[@itemprop="name"]/text()').extract()[0])
+        name = self.selector.xpath('//h1[@itemprop="name"]/text()').extract()
+        if name:
+            item["name"] = name[0]
+
+        address = self.selector.xpath('//span[@itemprop="streetAddress"]/text()').extract()
+        if address:
+            item["address"] = address[0]
+
+        locality = self.selector.xpath('//span[@itemprop="addressLocality"]/text()').extract()
+        if locality:
+            item["locality"] = locality[0]
+
+        country = self.selector.xpath('//span[@itemprop="addressCountry"]/text()').extract()
+        if country:
+            item["country"] = country[0]
+
+        postal_code = self.selector.xpath('//span[@itemprop="postalCode"]/text()').extract()
+        if postal_code:
+            item["postal_code"] = postal_code[0]
+
+        type = self.selector.xpath("(//div[@itemtype='http://schema.org/LocalBusiness']//div/text()[2]").extract()
+        print(type)
+        if type:
+            item["type"] = type[0].strip()
 
         return item
