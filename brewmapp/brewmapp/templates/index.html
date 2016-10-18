@@ -4,23 +4,33 @@
 		<script type="text/javascript" src="../static/javascript/script.js"></script>
 	</head>
 	<body>
+
 		<nav id="mainNav">
-			<div><img src="../static/images/keg.svg" id="keg"></div>
+			<div><img src="../static/images/logoFinal2.png" id="keg"></div>
 			<ul>
-				<li>
+				<li class="menuElement" id="home">
+					<a href="index.html">HOME</a>
+				</li>
+				<li class="menuElement" id="guides">
+					<a href="guides.html">GUIDES</a>
+				</li>
+				<li class="menuElement" id="about">
+					<a href="about.html">ABOUT</a>
+				</li>
+				<li class="menuElement">
 					<input type="text" id="searchField" value="Search here.">
 				</li>
-				<li><input type="button" value="Search" onclick="search()" id="subbutton">
-				</li>
-				<li id="about">
-					<a href="#">About</a>
+				<li class="menuElement">
+					<input type="button" value="Search" onclick="search()" id="subbutton">
 				</li>
 			</ul>
 		</nav>
-		<div id="map" style="width:100%;height:100%;">
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN0vhX2FQSENp9161rhLuoXUDCo-PmXiQ&libraries=places&callback=myMap"></script>
 
-</div>
+		
+		<div id="map" style="width:100%;height:100%;">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN0vhX2FQSENp9161rhLuoXUDCo-PmXiQ&libraries=places&callback=myMap"></script>
+
+		</div>
 	</body>
 
 
