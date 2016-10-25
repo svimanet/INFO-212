@@ -28,6 +28,7 @@ class ArticleScapper(CrawlSpider):
 
         name = self.selector.xpath('//h1[@itemprop="name"]/text()').extract()
         if name:
+            print(name)
             item["name"] = name[0]
 
         address = self.selector.xpath('//span[@itemprop="streetAddress"]/text()').extract()
@@ -46,7 +47,7 @@ class ArticleScapper(CrawlSpider):
         if postal_code:
             item["postal_code"] = postal_code[0]
 
-        type = self.selector.xpath("(//div[@itemtype='http://schema.org/LocalBusiness']//div/text()[2]").extract()
+        type = self.selector.xpath("(//div[@itemtype='http://schema.org/LocalBusiness']//div/text())[2]").extract()
         print(type)
         if type:
             item["type"] = type[0].strip()
