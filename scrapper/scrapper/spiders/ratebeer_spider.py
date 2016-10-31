@@ -28,27 +28,36 @@ class ArticleScapper(CrawlSpider):
 
         name = self.selector.xpath('//h1[@itemprop="name"]/text()').extract()
         if name:
-            print(name)
             item["name"] = name[0]
 
         address = self.selector.xpath('//span[@itemprop="streetAddress"]/text()').extract()
         if address:
-            item["address"] = address[0]
+            address = address[0] + " "
+        else:
+            address = ""
 
         locality = self.selector.xpath('//span[@itemprop="addressLocality"]/text()').extract()
         if locality:
-            item["locality"] = locality[0]
+            locality = locality[0]+" "
+        else:
+            locality = " "
 
         country = self.selector.xpath('//span[@itemprop="addressCountry"]/text()').extract()
         if country:
-            item["country"] = country[0]
+            country = country[0]+" "
+        else:
+            country = " "
 
         postal_code = self.selector.xpath('//span[@itemprop="postalCode"]/text()').extract()
         if postal_code:
-            item["postal_code"] = postal_code[0]
+            postal_code = postal_code[0]
+        else:
+            postal_code = ""
 
-        type = self.selector.xpath("(//div[@itemtype='http://schema.org/LocalBusiness']//div/text())[2]").extract()
-        print(type)
+        address = u"{0}{1}{2}{3}".format(address, locality, country, postal_code)
+        item["address"] = address
+
+        type = self.selector.xpath("(//div[@itemtype='http://schema.org/LocalBusiness']//div/text())[3]").extract()
         if type:
             item["type"] = type[0].strip()
 

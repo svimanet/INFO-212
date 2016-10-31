@@ -30,8 +30,7 @@ USER_AGENT_LIST = [
 
 
 ITEM_PIPELINES = {
-   # 'scrapper.pipelines.classify': 200,
-   # 'scrapper.pipelines.MySQLStorePipeline': 300,
+   'scrapper.pipelines.MySQLStorePipeline': 300,
 }
 
 LOG_LEVEL = "INFO"
