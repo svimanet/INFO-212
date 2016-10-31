@@ -1,5 +1,13 @@
 from brewmapp import app
 from flask import render_template
+import MySQLdb
+import json
+
+
+def get_cursor():
+    conf = json.load(open("./config.json"))
+    conn = MySQLdb.connect(conf["database"],conf["user"],conf["password"],conf["database"])
+    return conn.cursor()
 
 @app.route('/')
 @app.route('/index')
@@ -21,3 +29,13 @@ def get_brewery_info(name):
 
     # maybe just return json instead of a template
     return render_template('brewery.html', name=name, info=info, address=address)
+
+
+@app.route("/api/brewery/all")
+def get_all_breweries():
+    sql = "SELECT name,address,type FROM breweries"
+    cursor = get_cursor()
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    csv = "\n".join([",".join([item.replace(","," ") for item in i]) for i in data])
+    return csv
