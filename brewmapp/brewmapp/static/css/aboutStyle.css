@@ -21,8 +21,7 @@ html, body{
 	top:0px;
 	position: fixed;
 	padding: 0;
-	z-index: 99999;
-	padding-left: 20.5em;
+	z-index: 9998;
 	border: 1px solid black;
 }
 
@@ -37,16 +36,14 @@ ul {
 .menuElement{
 	display: inline-block;
 	margin-top: 0px;
-	
-	width: 6%;
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
-
 	font-size: 1em;
-	font-family: "arial black";
+	font-family: "arial black", serif;
 	color: black;
-	margin-left: 0.5em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 
 }
 a:link{
@@ -60,12 +57,11 @@ a:visited{
 }
 
 a{
-	margin: 0px;
+	margin:0px;
 	display: block;
 	width: 100%;
 	height: 100%;
 	text-decoration: none;
-
 }
 
 a:hover{

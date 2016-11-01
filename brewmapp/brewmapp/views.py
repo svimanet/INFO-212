@@ -1,5 +1,6 @@
 from brewmapp import app
-from flask import render_template
+from flask import render_template, request, jsonify
+
 import MySQLdb
 import json
 
@@ -50,8 +51,8 @@ def query_possible_breweries(breweryname):
         cursor = get_cursor()
         cursor.execute(sql)
         data = cursor.fetchall()
-        csv = ",".join([element for tupl in data for element in tupl])
-        return csv
+        results = [mv[0] for mv in data]
+        return jsonify(results=results)
     except:
         return 'No results.'
 
@@ -64,3 +65,5 @@ def get_all_breweries():
     data = cursor.fetchall()
     csv = "\n".join([",".join([item.replace(",", " ") for item in i]) for i in data])
     return csv
+
+
