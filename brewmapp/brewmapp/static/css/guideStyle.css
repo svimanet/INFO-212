@@ -43,7 +43,7 @@ ul {
 	height: 50px;
 	line-height: 50px;
 
-	font-size: 25px;
+	font-size: 1em;
 	font-family: "arial black";
 	color: black;
 	margin-left: 0.5em;
@@ -58,10 +58,14 @@ a:visited{
 .menuElement:hover{
 	background-color: #de8301;
 }
-
 a{
-
 	text-decoration: none;
+}
+.amenu{
+	margin: 0px;
+	display: block;
+	width: 100%;
+	height: 100%;
 
 }
 
@@ -80,7 +84,7 @@ a:hover{
 main{
 	padding-top: 3em;
 	height: auto;
-	width: 80em;
+	width: 60em;
 	margin: auto;
 	padding: auto;
 	min-width: 30%;
@@ -104,25 +108,13 @@ main{
 	background: lightgray;
 }
 .guideTitle{
-	float: right;
-	margin-left: 20%;
-	margin-right: 30%;
-	font-size: 24px;
-	font-weight: bold;
-	font-family: "arial";
-	text-align: center;
+	padding-left: 15em;
 }
 .guideText{
-	float: right;
-	margin-left: 30%;
-	margin-right: 10%;
-	font-family: "arial";
+	padding-left: 11em;
 }
-
 .guideImg{
-	height: auto;
 	position: absolute;
-	max-width: 10%;
-	min-width: 1%;
-
+	width: 10em;
+	height:10em;
 }

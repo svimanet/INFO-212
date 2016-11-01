@@ -43,7 +43,7 @@ ul {
 	height: 50px;
 	line-height: 50px;
 
-	font-size: 25px;
+	font-size: 1em;
 	font-family: "arial black";
 	color: black;
 	margin-left: 0.5em;
@@ -60,7 +60,10 @@ a:visited{
 }
 
 a{
-
+	margin: 0px;
+	display: block;
+	width: 100%;
+	height: 100%;
 	text-decoration: none;
 
 }
@@ -80,7 +83,7 @@ a:hover{
 main{
 	padding-top: 3em;
 	height: auto;
-	width: 80em;
+	width: 60em;
 	margin: auto;
 	padding: auto;
 	min-width: 30%;
@@ -97,6 +100,7 @@ main{
 }
 #github{
 	width: 40%;
+	display: inline-block;
 }
 #contributors{
 	width: 40%;
