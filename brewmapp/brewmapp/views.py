@@ -16,20 +16,16 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/api/brewery/name=<breweryname>")
+@app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
     """This method searches through the database and returns brewery info"""
     # TODO below
     # Search database for name, address and type
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
-    info = {}
     try:
         cursor.execute(sql)
         brewery = cursor.fetchone()
-        info['name'] = brewery[0]
-        info['address'] = brewery[1]
-        info['type'] = brewery[2]
-        return str(info)
+        return brewery[0] + "," + brewery[1] + "," + brewery[2]
     except:
         return 'No results.'
 
