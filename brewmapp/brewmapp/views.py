@@ -3,11 +3,11 @@ from flask import render_template
 import MySQLdb
 import json
 
-
 def get_cursor():
     conf = json.load(open("./config.json"))
     conn = MySQLdb.connect(conf["database"],conf["user"],conf["password"],conf["database"])
     return conn.cursor()
+
 
 @app.route('/')
 @app.route('/index')
@@ -23,9 +23,25 @@ def get_brewery_info(breweryname):
     # Search database for name, address and type
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
     try:
+        cursor = get_cursor()
         cursor.execute(sql)
         brewery = cursor.fetchone()
         return brewery[0] + "," + brewery[1] + "," + brewery[2]
+    except:
+        return 'No results.'
+
+
+@app.route('/api/brewery/search/<breweryname>')
+def query_possible_breweries(breweryname):
+    """This methods looks for possible breweries"""
+    sql = "SELECT name FROM breweries WHERE name LIKE '%s';" % ("%" + breweryname + "%")
+    print(sql)
+    try:
+        cursor = get_cursor()
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        csv = ",".join([element for tupl in data for element in tupl])
+        return csv
     except:
         return 'No results.'
 
@@ -36,5 +52,5 @@ def get_all_breweries():
     cursor = get_cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
-    csv = "\n".join([",".join([item.replace(","," ") for item in i]) for i in data])
+    csv = "\n".join([",".join([item.replace(",", " ") for item in i]) for i in data])
     return csv
