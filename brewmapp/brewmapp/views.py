@@ -15,6 +15,16 @@ def index():
     """This method renders the index page"""
     return render_template('index.html')
 
+@app.route('/guides')
+def guides():
+    """This method renders the guides page"""
+    return render_template('guides.html')
+
+@app.route('/about')
+def about():
+    """This method renders the about page"""
+    return render_template('about.html')
+
 
 @app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
