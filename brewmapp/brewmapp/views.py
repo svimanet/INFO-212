@@ -16,19 +16,22 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/brewery/name=<name>")
-def get_brewery_info(name):
-    """This method searches through the database and return brewery info"""
+@app.route("/api/brewery/name=<breweryname>")
+def get_brewery_info(breweryname):
+    """This method searches through the database and returns brewery info"""
     # TODO below
-    # Search database for info and address
-
-    info = "This is some brewery information"
-    address = "Someaddress 1337"
-
-    # Format the info and return as json or something
-
-    # maybe just return json instead of a template
-    return render_template('brewery.html', name=name, info=info, address=address)
+    # Search database for name, address and type
+    sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
+    info = {}
+    try:
+        cursor.execute(sql)
+        brewery = cursor.fetchone()
+        info['name'] = brewery[0]
+        info['address'] = brewery[1]
+        info['type'] = brewery[2]
+        return str(info)
+    except:
+        return 'No results.'
 
 
 @app.route("/api/brewery/all")
