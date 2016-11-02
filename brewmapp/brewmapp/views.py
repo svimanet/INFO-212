@@ -1,5 +1,5 @@
 from brewmapp import app
-from flask import render_template, request, jsonify
+from flask import render_template, jsonify
 
 import MySQLdb
 import json
@@ -16,10 +16,12 @@ def index():
     """This method renders the index page"""
     return render_template('index.html')
 
+
 @app.route('/guides')
 def guides():
     """This method renders the guides page"""
     return render_template('guides.html')
+
 
 @app.route('/about')
 def about():
@@ -46,7 +48,6 @@ def get_brewery_info(breweryname):
 def query_possible_breweries(breweryname):
     """This methods looks for possible breweries"""
     sql = "SELECT name FROM breweries WHERE name LIKE '%s';" % ("%" + breweryname + "%")
-    print(sql)
     try:
         cursor = get_cursor()
         cursor.execute(sql)
@@ -65,5 +66,3 @@ def get_all_breweries():
     data = cursor.fetchall()
     csv = "\n".join([",".join([item.replace(",", " ") for item in i]) for i in data])
     return csv
-
-
