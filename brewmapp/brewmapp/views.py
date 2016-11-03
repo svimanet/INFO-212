@@ -66,3 +66,12 @@ def get_all_breweries():
     data = cursor.fetchall()
     csv = "\n".join([",".join([item.replace(",", " ") for item in i]) for i in data])
     return csv
+
+
+@app.route("/api/brewery/allcoords")
+def get_all_breweries_json():
+    sql = "SELECT lat,lng FROM breweries;"
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    # results = [mv[0] for mv in data]
+    return jsonify(results=data)

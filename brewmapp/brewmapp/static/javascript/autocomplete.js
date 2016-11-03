@@ -19,9 +19,9 @@ $(function() {
                     dataType: "text",
                     success: function(data) {
                         var sd = data.split(",")
-                        // alert("Name:" + sd[0] + "\n"+
-                        //       "Address:" + sd[1] + "\n"+
-                        //       "Type:" + sd[2] +"\n");
+                        alert("Name:" + sd[0] + "\n"+
+                               "Address:" + sd[1] + "\n"+
+                               "Type:" + sd[2] +"\n");
                         searchAddress(sd[1])
                     }
                  });
@@ -29,6 +29,6 @@ $(function() {
             //console.log(ui.item.value);
         }
     });
-})
+});
 
 
