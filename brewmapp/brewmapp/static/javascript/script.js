@@ -5,17 +5,16 @@ var map;
  */
 function getMap(){
     if(!map){
-    var mapOptions = {
-        center: new google.maps.LatLng(63.5107974, 5.2554845),
-        zoom: 5
-    }
-    var mapCanvas = document.getElementById("map");
-    newMap = new google.maps.Map(mapCanvas, mapOptions);
-    map = newMap;
-    return newMap;
-    } else {
+        var mapOptions = {
+            center: new google.maps.LatLng(63.5107974, 5.2554845),
+            zoom: 5
+        }
+        var mapCanvas = document.getElementById("map");
+        newMap = new google.maps.Map(mapCanvas, mapOptions);
+        map = newMap;
+        return newMap;
+        }
     return map;
-    }
 }
 /**
  * Queries the api for brewery info
@@ -23,31 +22,26 @@ function getMap(){
  */
 function markAllBreweries() {
 
-    var map = getMap()
-    $.getJSON('/api/brewery/allcoords', function (json) {
-            var data = json['results'];
-            $.each(data, function(index){
-                        var center = new google.maps.LatLng(data[index][3], data[index][4]);
-                        var marker = new google.maps.Marker({position: center});
-                        marker.setMap(map);
-                        google.maps.event.addListener(marker,'click',function() {
-                        map.setZoom(12);
-                        map.setCenter(marker.getPosition());
-                    });
+var map = getMap()
+$.getJSON('/api/brewery/allcoords', function (json) {
+        var data = json['results'];
+        $.each(data, function(index){
+                    var center = new google.maps.LatLng(data[index][3], data[index][4]);
+                    var marker = new google.maps.Marker({position: center});
+                    marker.setMap(map);
 
                     var infowindow = new google.maps.InfoWindow({
                       content:"<p class='mapmarker'>Name: " + data[index][0] + "</p>" +
                               "<p class='mapmarker'>Address: " + data[index][1] + "</p>" +
                               "<p class='mapmarker'>Type: " + data[index][2]  + "</p>"
-                    });
-
-                    google.maps.event.addListener(marker, 'click', function() {
-                      infowindow.open(map,marker);
-                    });
-
-                    })
             });
-    }
+
+            google.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(map,marker);
+            });
+        })
+    });
+}
 
 
 /**
@@ -97,6 +91,11 @@ $(document).ready(function() {
         }
     );
 };
+
+
+function removeDefaultValue(){
+    document.getElementById('searchField').value = ""
+}
 
 
 
