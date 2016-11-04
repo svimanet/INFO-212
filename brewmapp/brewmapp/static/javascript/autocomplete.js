@@ -2,6 +2,12 @@
  * Created by goat on 01/11/16.
  */
 
+/**
+* This method queries the api for possible
+* breweries and suggests autocompletions for the
+* users. If a suggestion is used, the searchAddress
+* function is executed.
+*/
 $(function() {
     $("#searchField").autocomplete({
         source:function(request, response) {
@@ -19,14 +25,10 @@ $(function() {
                     dataType: "text",
                     success: function(data) {
                         var sd = data.split(",")
-                        alert("Name:" + sd[0] + "\n"+
-                               "Address:" + sd[1] + "\n"+
-                               "Type:" + sd[2] +"\n");
                         searchAddress(sd[1])
                     }
                  });
             });
-            //console.log(ui.item.value);
         }
     });
 });

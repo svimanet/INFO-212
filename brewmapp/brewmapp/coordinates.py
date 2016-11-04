@@ -17,21 +17,16 @@ def get_coords(address):
 def insert_all_coords():
     cursor.execute('SELECT id, address FROM breweries;')
     data = cursor.fetchall()
-    i = 0
-    while i < len(data):
-
+    for brewery in data:
         try:
-            coords = get_coords(data[i][1])
-            sql = 'UPDATE breweries SET lat = %s, lng = %s Where id = %s;' % (coords["lat"], coords["lng"], data[i][0])
+            coords = get_coords(brewery[1])
+            sql = 'UPDATE breweries SET lat = %s, lng = %s Where id = %s;' % (coords["lat"], coords["lng"], brewery[0])
             cursor.execute(sql)
             conn.commit()
             print(sql)
-            time.sleep(1)
-            conn.commit()
         except:
             print('Possible QUERY_LIMIT. Waiting 10 seconds.')
             time.sleep(10)
-        i += 1
     conn.commit()
 
 

@@ -32,8 +32,6 @@ def about():
 @app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
     """This method searches through the database and returns brewery info"""
-    # TODO below
-    # Search database for name, address and type
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
     try:
         cursor = get_cursor()
@@ -60,7 +58,8 @@ def query_possible_breweries(breweryname):
 
 @app.route("/api/brewery/all")
 def get_all_breweries():
-    sql = "SELECT name,address,type FROM breweries"
+    """This method selects all breweries and returns them as csv"""
+    sql = "SELECT name,address,type,lat,lng FROM breweries"
     cursor = get_cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
@@ -70,8 +69,9 @@ def get_all_breweries():
 
 @app.route("/api/brewery/allcoords")
 def get_all_breweries_json():
-    sql = "SELECT lat,lng FROM breweries;"
+    """This method selects all breweries and returns them as json"""
+    sql = "SELECT name, address, type, lat, lng FROM breweries;"
+    cursor = get_cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
-    # results = [mv[0] for mv in data]
     return jsonify(results=data)

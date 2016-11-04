@@ -109,3 +109,11 @@ body .ui-autocomplete .ui-menu-item .ui-state-focus {
   height: auto;
   border: 0px;
 }
+
+.mapmarker{
+    margin:1px;
+}
+
+#subbutton{
+       cursor: pointer;
+}
