@@ -32,13 +32,16 @@ def about():
 @app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
     """This method searches through the database and returns brewery info"""
+    cursor = conn.cursor()
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
     try:
         cursor = get_cursor()
         cursor.execute(sql)
         brewery = cursor.fetchone()
         return brewery[0] + "," + brewery[1] + "," + brewery[2]
+        
     except:
+        conn.close()
         return 'No results.'
 
 
@@ -46,6 +49,7 @@ def get_brewery_info(breweryname):
 def query_possible_breweries(breweryname):
     """This methods looks for possible breweries"""
     sql = "SELECT name FROM breweries WHERE name LIKE '%s';" % ("%" + breweryname + "%")
+    cursor = conn.cursor()
     try:
         cursor = get_cursor()
         cursor.execute(sql)
@@ -53,6 +57,7 @@ def query_possible_breweries(breweryname):
         results = [mv[0] for mv in data]
         return jsonify(results=results)
     except:
+        conn.close()
         return 'No results.'
 
 
@@ -70,8 +75,10 @@ def get_all_breweries():
 @app.route("/api/brewery/allcoords")
 def get_all_breweries_json():
     """This method selects all breweries and returns them as json"""
+    cursor = conn.cursor()
     sql = "SELECT name, address, type, lat, lng FROM breweries;"
     cursor = get_cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
+    conn.close()
     return jsonify(results=data)
