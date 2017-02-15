@@ -9,7 +9,7 @@
 * function is executed.
 */
 $(function() {
-    $("#searchField").autocomplete({
+    $("#search-field").autocomplete({
         source:function(request, response) {
             $.getJSON("/api/brewery/search/" + request.term,{
             }, function(data) {

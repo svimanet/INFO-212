@@ -9,6 +9,24 @@ def get_cursor():
     conn = MySQLdb.connect(conf["database"],conf["user"],conf["password"],conf["database"])
     return conn.cursor()
 
+class Brewery(object):
+    def __init__(self, name, address, type, latitude, longitude):
+        self.name = name
+        self.address = address
+        self.type = type
+        self.latitude = latitude
+        self.longitude = longitude
+
+    def serialize(self):
+        return {
+            'name': self.name,
+            'address': self.address,
+            'type': self.type,
+            'latitude': self.latitude,
+            'longitude': self.longitude
+
+        }
+
 
 @app.route('/')
 @app.route('/index')
@@ -31,7 +49,7 @@ def about():
 
 @app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
-    """This method searches through the database and returns brewery info"""
+    """This function searches through the database and returns brewery info"""
     cursor = conn.cursor()
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
     try:
@@ -39,9 +57,8 @@ def get_brewery_info(breweryname):
         cursor.execute(sql)
         brewery = cursor.fetchone()
         return brewery[0] + "," + brewery[1] + "," + brewery[2]
-        
+
     except:
-        conn.close()
         return 'No results.'
 
 
@@ -57,7 +74,6 @@ def query_possible_breweries(breweryname):
         results = [mv[0] for mv in data]
         return jsonify(results=results)
     except:
-        conn.close()
         return 'No results.'
 
 
@@ -80,5 +96,7 @@ def get_all_breweries_json():
     cursor = get_cursor()
     cursor.execute(sql)
     data = cursor.fetchall()
-    conn.close()
-    return jsonify(results=data)
+    breweries = []
+    for b in data:
+        breweries.append(Brewery(b[0], b[1], b[2], b[3], b[4]))
+    return jsonify(breweries=[e.serialize() for e in breweries])

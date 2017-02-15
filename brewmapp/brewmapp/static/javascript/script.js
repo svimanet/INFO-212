@@ -16,6 +16,7 @@ function getMap(){
         }
     return map;
 }
+
 /**
  * Queries the api for brewery info
  * and places all the markers with info on the map.
@@ -24,16 +25,16 @@ function markAllBreweries() {
 
 var map = getMap()
 $.getJSON('/api/brewery/allcoords', function (json) {
-        var data = json['results'];
+        var data = json['breweries'];
         $.each(data, function(index){
-                    var center = new google.maps.LatLng(data[index][3], data[index][4]);
+                    var center = new google.maps.LatLng(data[index]['latitude'], data[index]['longitude']);
                     var marker = new google.maps.Marker({position: center});
                     marker.setMap(map);
 
                     var infowindow = new google.maps.InfoWindow({
-                      content:"<p class='mapmarker'>Name: " + data[index][0] + "</p>" +
-                              "<p class='mapmarker'>Address: " + data[index][1] + "</p>" +
-                              "<p class='mapmarker'>Type: " + data[index][2]  + "</p>"
+                      content:"<p class='mapmarker'>Name: " + data[index]['name'] + "</p>" +
+                              "<p class='mapmarker'>Address: " + data[index]['address'] + "</p>" +
+                              "<p class='mapmarker'>Type: " + data[index]['type']  + "</p>"
             });
 
             google.maps.event.addListener(marker, 'click', function() {
@@ -77,7 +78,7 @@ var map = getMap()
 */
 function searchAddressFromInput(){
 var map = getMap()
-var input = document.getElementById('searchField').value
+var input = document.getElementById('search-field').value
 $(document).ready(function() {
             $.ajax({
                 type: "GET",
@@ -94,8 +95,26 @@ $(document).ready(function() {
 
 
 function removeDefaultValue(){
-    document.getElementById('searchField').value = ""
+    document.getElementById('search-field').value = ""
 }
+
+/**
+ * Skrevet av kanditat 141.
+ */
+
+function show_menu(){
+    var mobile_nav = $(".menu-list");
+    if(mobile_nav.hasClass('open')){
+        mobile_nav.removeClass('open');
+        mobile_nav.css('right','-200px');
+    }else{
+        mobile_nav.addClass('open');
+        mobile_nav.css('right','0');
+    }
+}
+
+
+
 
 
 

@@ -11,88 +11,11 @@ html, body{
 	padding: 0;
 }
 
-#mainNav{
-	background: lightblue;
-	width: 100%;
-	height: 50px;
-	top:0px;
-	position: fixed;
-	padding: 0;
-	z-index: 9998;
-	border: 1px solid black;
-}
-
-ul {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	margin-left: 5em;
-}
-
-li{
-	margin: 0px;
-}
-
-.menuElement{
-	display: inline-block;
-	margin-top: 0px;
-	text-align: center;
-	height: 50px;
-	line-height: 50px;
-	font-size: 1em;
-	font-family: "arial black", serif;
-	color: black;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
-}
-a:link{
-	color: black;
-}
-a:visited{
-	color: black;
-}
-#home:hover{
-	background-color: #de8301;
-}
-#guides:hover{
-	background-color: #de8301;
-}
-#about:hover{
-	background-color: #de8301;
-}
-a{
-	margin:0px;
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-
-}
-
-a:hover{
-	color:black;
-}
-
-#keg{
-	display: inline-block;
-	float: left;
-	width: 3em;
-	height: 3em;
-	margin: 0;
-}
-#searchField{
-	width: 100%;
-	height: auto;
-}
-#seachField:hover{
-	opacity: 0;
-}
-
-#subbutton{
-	margin-left:0;
-	border-radius: 0px;
-	border: 1px solid black;
-	height: auto;
+#map{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1;
 }
 
 body .ui-autocomplete {
@@ -112,8 +35,4 @@ body .ui-autocomplete .ui-menu-item .ui-state-focus {
 
 .mapmarker{
     margin:1px;
-}
-
-#subbutton{
-       cursor: pointer;
 }

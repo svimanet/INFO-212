@@ -2,42 +2,45 @@
 	<head>
 		<title>Brewmapp</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+		<script src="https://use.fontawesome.com/db87107c26.js"></script>
 		<script type="text/javascript" src="../static/javascript/script.js"></script>
 		<link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
 		<script src="../static/javascript/jquery.js"></script>
 		<script src="../static/javascript/jquery-ui.js"></script>
 		<script rel="script" src="../static/javascript/autocomplete.js"></script>
+
+		<link href="../static/css/menu.css" rel="Stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 	</head>
 	<body>
+	<header>
+		<nav class="menu">
+		<a href="index.html" id="logo-link"><img id="logo" src="static/images/logoFinal2.png"  alt="A logo icon of the media database showing a film roll."></a>
 
-		<nav id="mainNav">
-			<div><img src="../static/images/logoFinal2.png" id="keg"></div>
-			<ul>
-				<li class="menuElement" id="home">
-					<a href="/">HOME</a>
-				</li>
-				<li class="menuElement" id="guides">
-					<a href="/guides">GUIDES</a>
-				</li>
-				<li class="menuElement" id="about">
-					<a href="/about">ABOUT</a>
-				</li>
-				<li class="menuElement">
-					<input value="Search Here" type="text" id="searchField" onclick="removeDefaultValue()" class="form-control input-lg"/>
-				</li>
-				<li class="menuElement">
-					<input type="button" value="Search" onclick="searchAddressFromInput()" id="subbutton">
+		<div id="mobile-wrapper">
+			<form action="./search.html" id="search-wrapper">
+				<input id="search-field" type="text" name="search-field" placeholder="Search here">
+				<input type="submit" id="search-button" value="Search">
+			</form>
+			<i onclick="show_menu()" id="drop-down" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+		</div>
+			<ul class="menu-list">
+				<li class="navItem"><a class="menuLink" href="/">Home</a></li>
+				<li class="navItem"><a class="menuLink" href="/guides">Guides</a></li>
+				<li class="navItem"><a class="menuLink" href="/about">About</a></li>
+				<li class="right-menu-item">
+					<ul>
+						<!-- bottom mobile links
+						<li class="navItem"><a class="menuLink" href="./">abc123</a></li>
+						<li class="navItem"><a class="menuLink" href="./">Logout</a></li>
+							-->
+					</ul>
 				</li>
 			</ul>
 		</nav>
-
-		
-		<div id="map" style="width:100%;height:calc(100% - 50px); margin-top:50px;">
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN0vhX2FQSENp9161rhLuoXUDCo-PmXiQ&libraries=places&callback=markAllBreweries"></script>
-
+	</header>
+		<div id="map" style="width:100%;height:calc(100% - 34px); margin-top:34px;">
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN0vhX2FQSENp9161rhLuoXUDCo-PmXiQ&libraries=places&callback=markAllBreweries"></script>
 		</div>
 	</body>
-
-
 </html>
