@@ -1,33 +1,25 @@
-# INFO-212
+# Brewmapp
+This application was developed as an assignment in INFO212 System development (systemutvikling) during autumn 2016.   
+The goal of the course was to document the development of a product we came up with ourselves, including planing, testing, designing etc. and we had to follow a propper development methodology. The product was a website that let the user search for any brewery in Norway and have them displayed on a map.The website has been taken down since we don't want to rent a VPS and domain for a school project we don't plan to further develop. The text below consists of a report including plans during the project.
 
-## Brewmapp
-
+# Report
 ## Project plan
-
-
-Tasks to be done:
-
-•[week 39] Create the main website
-
-      •[week 38] HTML
-      •[week 38] Info on the site
-      •[week 39] Navigation etc
-
-•[week 41] Obtain data about breweries
-
-    •[week 40] Scrap the websites mentioned, or find other resources
-
-•[week 41] Obtaining map
-
-      •[week 40] Import google maps to site
-      •[week 41] Fill with relevant data
-      •[week 41] Make relevant data click responsive
-
-•[week 42] Piece everything together
-•[week 42] User testing
-•[week 43] Potential fixes
-•[week 44] Finishing touches
-•[week 47] Launch website
+Tasks to be done:   
+•[week 39] Create the main website   
+      •[week 38] HTML   
+      •[week 38] Info on the site   
+      •[week 39] Navigation etc   
+•[week 41] Obtain data about breweries   
+      •[week 40] Scrap the websites mentioned, or find other resources   
+•[week 41] Obtaining map   
+      •[week 40] Import google maps to site   
+      •[week 41] Fill with relevant data   
+      •[week 41] Make relevant data click responsive   
+•[week 42] Piece everything together   
+•[week 42] User testing   
+•[week 43] Potential fixes   
+•[week 44] Finishing touches   
+•[week 47] Launch website   
 
 
 ## Background
