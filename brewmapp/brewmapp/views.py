@@ -50,7 +50,6 @@ def about():
 @app.route("/api/brewery/name/<breweryname>")
 def get_brewery_info(breweryname):
     """This function searches through the database and returns brewery info"""
-    cursor = conn.cursor()
     sql = "SELECT name,address,type FROM breweries WHERE name='%s';" % breweryname
     try:
         cursor = get_cursor()
@@ -66,7 +65,6 @@ def get_brewery_info(breweryname):
 def query_possible_breweries(breweryname):
     """This methods looks for possible breweries"""
     sql = "SELECT name FROM breweries WHERE name LIKE '%s';" % ("%" + breweryname + "%")
-    cursor = conn.cursor()
     try:
         cursor = get_cursor()
         cursor.execute(sql)
@@ -91,7 +89,6 @@ def get_all_breweries():
 @app.route("/api/brewery/allcoords")
 def get_all_breweries_json():
     """This method selects all breweries and returns them as json"""
-    cursor = conn.cursor()
     sql = "SELECT name, address, type, lat, lng FROM breweries;"
     cursor = get_cursor()
     cursor.execute(sql)
